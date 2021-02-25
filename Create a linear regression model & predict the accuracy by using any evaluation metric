@@ -1,0 +1,33 @@
+import numpy as np 
+import matplotlib.pyplot as plt 
+  
+from sklearn.linear_model import LinearRegression 
+from sklearn.metrics import mean_squared_error
+
+#Dataset where wine_age is a independent variable and wine_price is a dependent variable
+
+wine_age = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+wine_price = [100, 200, 301, 401, 500, 600, 700, 800, 901, 1004]
+
+# preparing the data
+
+x, y = np.array(wine_age), np.array(wine_price)
+
+#Building a regression model
+
+x = x.reshape(-1, 1)
+regression_model = LinearRegression()
+
+#Train the model to fit the data
+
+regression_model.fit(x, y)
+
+#Predict the value using our regression model
+
+y_predicted = regression_model.predict(x)
+plt.scatter(x, y, color = 'green') 
+plt.plot(x, y_predicted, color = 'red')
+
+# Evaluate our model by using Mean Squared Error cost function
+mse = mean_squared_error(y, y_predicted)
+print(mse)
